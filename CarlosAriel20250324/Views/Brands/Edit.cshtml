@@ -1,0 +1,57 @@
+﻿@model CarlosAriel20250324.Models.Brand
+
+@{
+    ViewData["Title"] = "Editar Marca";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+        <div class="card">
+            <div class="card-header bg-warning text-white">
+                <h4>Editar Marca</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="form-group mb-3">
+                        <label asp-for="BrandName" class="control-label">Nombre de la Marca</label>
+                        <input asp-for="BrandName" class="form-control" />
+                        <span asp-validation-for="BrandName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Country" class="control-label">País</label>
+                        <input asp-for="Country" class="form-control" />
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group d-flex justify-content-between mt-4">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>

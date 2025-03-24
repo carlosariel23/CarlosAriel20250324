@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CarlosAriel20250324.Models.Brand>
+
+@{
+    ViewData["Title"] = "Buscar Marcas";
+}
+
+<h1>Buscar Marcas</h1>
+<form asp-action="Index">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Nombre de la Marca</label>
+                <input type="text" name="brandName" class="form-control" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">País</label>
+                <input type="text" name="country" class="form-control" />
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label class="control-label">Cantidad de Registros</label>
+                <select name="topRegistro" class="form-control">
+                    <option selected value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="60">60</option>
+                    <option value="100">100</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="0">Todos</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+            <a class="btn btn-info" asp-action="Create">Ir a Crear</a>
+        </div>
+    </div>
+</form>
+
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+}

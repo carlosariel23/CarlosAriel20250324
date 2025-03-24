@@ -1,5 +1,6 @@
 using CarlosAriel20250324.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,17 @@ builder.Services.AddDbContext<Test20250324DbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Conn"));
 });
+
+// Configuración de autenticación con cookies 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Users/Login";  // Ajustar a la ruta de login adecuada
+        options.AccessDeniedPath = "/Users/Login";  // Ajustar la ruta de acceso denegado
+        options.ExpireTimeSpan = TimeSpan.FromHours(8);
+        options.SlidingExpiration = true;
+        options.Cookie.HttpOnly = true;
+    });
 
 var app = builder.Build();
 
@@ -25,6 +37,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();  // Añadido para habilitar la autenticación
 app.UseAuthorization();
 
 app.MapControllerRoute(

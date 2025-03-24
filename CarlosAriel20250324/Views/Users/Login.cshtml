@@ -1,0 +1,27 @@
+﻿@model CarlosAriel20250324.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Login" method="post">
+    <div class="form-group">
+        <label for="Email">Correo Electrónico</label>
+        <input type="email" name="Email" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Password">Contraseña</label>
+        <input type="password" name="Password" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

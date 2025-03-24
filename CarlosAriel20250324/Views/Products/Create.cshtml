@@ -1,0 +1,84 @@
+﻿@model CarlosAriel20250324.Models.Product
+
+@{
+    ViewData["Title"] = "Crear Producto";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4>Crear Producto</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="ProductName" class="control-label">Nombre del Producto</label>
+                        <input asp-for="ProductName" class="form-control" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Description" class="control-label">Descripción</label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Price" class="control-label">Precio</label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="PurchasePrice" class="control-label">Precio de Compra</label>
+                        <input asp-for="PurchasePrice" class="form-control" />
+                        <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="WarehouseId" class="control-label">Almacén</label>
+                        <select asp-for="WarehouseId" class="form-control" asp-items="ViewBag.WarehouseId"></select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="BrandId" class="control-label">Marca</label>
+                        <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Notes" class="control-label">Notas</label>
+                        <input asp-for="Notes" class="form-control" />
+                        <span asp-validation-for="Notes" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group d-flex justify-content-between mt-4">
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                        <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>
